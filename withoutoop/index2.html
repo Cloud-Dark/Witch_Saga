@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Witch Problem</title>
+  </head>
+  <body>
+    <h1>Witch Problem</h1>
+    <div id="result"></div>
+
+    <script>
+      // Input data
+      const personA = { ageOfDeath: 10, yearOfDeath: 12 };
+      const personB = { ageOfDeath: 13, yearOfDeath: 17 };
+
+      // Calculate number of people killed on each birth year
+      const witchKills = {};
+      let totalKills = 0;
+      for (let i = 1; i <= personB.yearOfDeath - personB.ageOfDeath; i++) {
+        if (i === 1) {
+          witchKills[i] = 1;
+          totalKills += 1;
+        } else {
+          witchKills[i] = witchKills[i - 1] + (i - 1);
+          totalKills += witchKills[i];
+        }
+      }
+
+      // Calculate birth year for each person and number of people killed on that year
+      const birthYearA = personA.yearOfDeath - personA.ageOfDeath;
+      const killsA = witchKills[birthYearA] || 0;
+
+      const birthYearB = personB.yearOfDeath - personB.ageOfDeath;
+      const killsB = witchKills[birthYearB] || 0;
+
+      // Calculate average kills
+      const averageKills = (killsA + killsB) / 2;
+
+      // Display result
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = `
+        <p>Given:</p>
+        <ul>
+          <li>Person A: Age of death = ${personA.ageOfDeath}, Year of Death = ${personA.yearOfDeath}</li>
+          <li>Person B: Age of death = ${personB.ageOfDeath}, Year of Death = ${personB.yearOfDeath}</li>
+        </ul>
+        <p>Answer:</p>
+        <ul>
+          <li>Person A born on Year = ${birthYearA}, number of people killed on year ${birthYearA} is ${killsA}.</li>
+          <li>Person B born on Year = ${birthYearB}, number of people killed on year ${birthYearB} is ${killsB}.</li>
+          <li>So the average is (${killsA} + ${killsB}) / 2 = ${averageKills}.</li>
+        </ul>
+      `;
+    </script>
+  </body>
+</html>
