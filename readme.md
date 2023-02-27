@@ -27,7 +27,7 @@ Demo: [https://witch-saga.apipedia.repl.co/](https://witch-saga.apipedia.repl.co
 
 ## Teknologi digunakan
 Untuk menyempurnakan aplikasi ini developer menggunakan beberapa bantuan tools agar lebih mudah di gunakan
-- PHP &.4.19
+- PHP 7.4.19
 ## Class Berjalan
 - classwithsaga.php 
 
